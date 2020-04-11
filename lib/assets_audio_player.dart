@@ -407,18 +407,23 @@ class AssetsAudioPlayer {
   ///     _assetsAudioPlayer.play();
   ///
   void play() {
-    _sendChannel.invokeMethod('play', {
-      "id": this.id,
-    });
+    if(!_isPlaying.value) {
+      _sendChannel.invokeMethod('play', {
+        "id": this.id,
+      });
+    }
   }
 
   /// Tells the media player to play the current song
   ///     _assetsAudioPlayer.pause();
   ///
   void pause() {
-    _sendChannel.invokeMethod('pause', {
-      "id": this.id,
-    });
+    print('testing');
+    if (_isPlaying.value) {
+      _sendChannel.invokeMethod('pause', {
+        "id": this.id,
+      });
+    }
   }
 
   /// Change the current position of the song
